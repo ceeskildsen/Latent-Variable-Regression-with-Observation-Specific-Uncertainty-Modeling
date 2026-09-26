@@ -1,0 +1,41 @@
+{
+  "title": "Observation-Specific Uncertainty Modeling for Latent-Variable Regression in High-Dimensional Analytical Data",
+  "upload_type": "software",
+  "description": "Code, data, analysis outputs, figures, and tables supporting the manuscript \"Observation-Specific Uncertainty Modeling for Latent-Variable Regression in High-Dimensional Analytical Data\". The third-party AqSolDB source dataset is not redistributed and must be downloaded separately as described in the README.",
+  "creators": [
+    {
+      "name": "Eskildsen, Carl Emil",
+      "affiliation": "Department of Bioengineering, Imperial College London; Department of Physiology, Anatomy and Genetics, University of Oxford; Kavli Institute for Nanoscience Discovery, University of Oxford"
+    },
+    {
+      "name": "Papadopoulos, Georgios",
+      "affiliation": "Department of Physiology, Anatomy and Genetics, University of Oxford; Kavli Institute for Nanoscience Discovery, University of Oxford; Department of Computing, Imperial College London"
+    },
+    {
+      "name": "Giraldo, Kevin A.",
+      "affiliation": "Department of Physiology, Anatomy and Genetics, University of Oxford; Kavli Institute for Nanoscience Discovery, University of Oxford"
+    },
+    {
+      "name": "Barahona, Mauricio",
+      "affiliation": "Department of Mathematics, Imperial College London"
+    },
+    {
+      "name": "Stevens, Molly M.",
+      "affiliation": "Department of Bioengineering, Imperial College London; Department of Physiology, Anatomy and Genetics, University of Oxford; Kavli Institute for Nanoscience Discovery, University of Oxford; Department of Materials, Imperial College London; Institute of Biomedical Engineering, Imperial College London; Department of Engineering Science, University of Oxford"
+    }
+  ],
+  "access_right": "open",
+  "license": "other-open",
+  "language": "eng",
+  "keywords": [
+    "latent-variable regression",
+    "partial least squares",
+    "Gaussian processes",
+    "observation-specific uncertainty",
+    "prediction uncertainty",
+    "bias correction",
+    "Raman spectroscopy",
+    "chemometrics",
+    "QSAR"
+  ]
+}
