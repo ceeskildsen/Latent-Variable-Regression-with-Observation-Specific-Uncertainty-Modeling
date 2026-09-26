@@ -1,0 +1,311 @@
+README – Raman Analysis Data
+
+Overview:
+---------
+
+This folder contains the analysis-ready Raman datasets and model results used
+in the manuscript:
+
+Observation-Specific Uncertainty Modeling for Latent-Variable Regression in
+High-Dimensional Analytical Data
+
+The processed Raman spectra were divided into calibration, validation, and
+test sets. Each spectral acquisition remains a separate observation. The
+three repeat acquisitions from the same well were kept together in the same
+data split and were not averaged.
+
+
+Split design:
+-------------
+
+The split was generated using:
+
+    code/Raman/select_data_for_analysis.m
+
+The MATLAB random-number seed was set to 1 using the twister generator so that
+the well selection is reproducible.
+
+For each calibration-grid mixture:
+
+    Calibration set:
+        2 wells × 3 repeat acquisitions = 6 spectra
+
+    Validation set:
+        5 wells × 3 repeat acquisitions = 15 spectra
+
+    Test set:
+        25 wells × 3 repeat acquisitions = 75 spectra
+
+The calibration-grid mixture identifiers are:
+
+    1, 3, 5, 7, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20,
+    21, 22, 23, 24, 25, 26, 27, 28, 29, and 30
+
+The following off-grid mixture identifiers were assigned only to the test
+set:
+
+    31, 35, 36, 37, 39, 41, 42, 43, 44, 45, 46, and 48
+
+For each off-grid mixture, 25 wells were selected for the test set. Mixture
+identifiers and wells that were not selected for the analysis are not included
+in the calibration, validation, or test datasets.
+
+
+Dataset sizes:
+--------------
+
+Calibration:
+    150 spectra × 380 spectral variables
+    25 mixture formulations
+    2 wells per mixture
+    3 repeat acquisitions per well
+
+Validation:
+    375 spectra × 380 spectral variables
+    25 mixture formulations
+    5 wells per mixture
+    3 repeat acquisitions per well
+
+Test:
+    2,775 spectra × 380 spectral variables
+    37 mixture formulations
+    25 wells per mixture
+    3 repeat acquisitions per well
+
+
+Contents:
+---------
+
+data_split.mat
+    MATLAB file containing the calibration, validation, and test datasets,
+    together with the Raman-shift axis and the indices linking each
+    observation to the processed dataset.
+
+    Variables:
+
+    Xcal
+        A 150 × 380 matrix of calibration spectra.
+
+    Ycal
+        A 150 × 2 matrix of calibration reference mass fractions.
+        Column 1 contains sucrose and column 2 contains fructose.
+
+    IDcal
+        A 150 × 1 vector of calibration-set mixture identifiers.
+
+    Xval
+        A 375 × 380 matrix of validation spectra.
+
+    Yval
+        A 375 × 2 matrix of validation reference mass fractions.
+        Column 1 contains sucrose and column 2 contains fructose.
+
+    IDval
+        A 375 × 1 vector of validation-set mixture identifiers.
+
+    Xtest
+        A 2,775 × 380 matrix of test spectra.
+
+    Ytest
+        A 2,775 × 2 matrix of test reference mass fractions.
+        Column 1 contains sucrose and column 2 contains fructose.
+
+    IDtest
+        A 2,775 × 1 vector of test-set mixture identifiers.
+
+    wn
+        A 380 × 1 vector of Raman-shift values in cm⁻¹ corresponding to
+        the columns of Xcal, Xval, and Xtest.
+
+    idx_cal
+        Row indices linking the calibration observations to
+        data/Raman/processed_data/processed_data.mat.
+
+    idx_val
+        Row indices linking the validation observations to
+        data/Raman/processed_data/processed_data.mat.
+
+    idx_test
+        Row indices linking the test observations to
+        data/Raman/processed_data/processed_data.mat.
+
+
+CSV representations:
+--------------------
+
+calibration_spectra.csv
+    CSV representation of Xcal: 150 rows × 380 columns.
+
+calibration_reference.csv
+    CSV representation of Ycal: 150 rows × 2 columns.
+
+calibration_ID.csv
+    CSV representation of IDcal: 150 rows × 1 column.
+
+calibration_indices.csv
+    CSV representation of idx_cal: 150 rows × 1 column.
+
+validation_spectra.csv
+    CSV representation of Xval: 375 rows × 380 columns.
+
+validation_reference.csv
+    CSV representation of Yval: 375 rows × 2 columns.
+
+validation_ID.csv
+    CSV representation of IDval: 375 rows × 1 column.
+
+validation_indices.csv
+    CSV representation of idx_val: 375 rows × 1 column.
+
+test_spectra.csv
+    CSV representation of Xtest: 2,775 rows × 380 columns.
+
+test_reference.csv
+    CSV representation of Ytest: 2,775 rows × 2 columns.
+
+test_ID.csv
+    CSV representation of IDtest: 2,775 rows × 1 column.
+
+test_indices.csv
+    CSV representation of idx_test: 2,775 rows × 1 column.
+
+wavenumbers.csv
+    CSV representation of wn: 380 rows × 1 column.
+
+The CSV files do not contain header rows. Their values and ordering correspond
+directly to the variables in data_split.mat. The index files use MATLAB’s
+one-based row numbering and refer to rows in
+data/Raman/processed_data/processed_data.mat.
+
+
+Model-result files:
+-------------------
+
+pls_model.mat
+    Generated by:
+
+        code/Raman/PLSmodel.m
+
+    Contains the two-latent-variable partial least-squares regression model
+    for fructose prediction with sucrose as the interferent. It includes
+    calibration, validation, and test scores; predictions and residuals;
+    model coefficients and loadings; leave-one-mixture-out cross-validation
+    errors; and mixture-level summaries of the validation and test results.
+
+gp_model_results.mat
+    Generated by:
+
+        code/Raman/GPmodel.m
+
+    Contains the Gaussian-process models fitted to the validation-set latent
+    scores and prediction errors. It includes estimates of observation-
+    specific prediction bias, aleatoric variance, epistemic variance, total
+    prediction-error variance, and the values used to construct latent-space
+    maps. The saved variance variables use the prefixes Var_epi, Var_ale, and
+    Var_total to identify the epistemic, aleatoric, and total components,
+    respectively.
+
+bias_correction_results.mat
+    Generated by:
+
+        code/Raman/bias_correction_analysis.m
+
+    Contains prediction errors before and after bias correction, mean squared
+    errors for the on-grid, off-grid, and combined test sets, percentage
+    reductions in mean squared error, and the associated statistical tests.
+
+analyte_detection_results.mat
+    Generated by:
+
+        code/Raman/analyte_detection_analysis.m
+
+    Contains the null-space projections, estimated decision limits, detection
+    probabilities, and Type I and Type II error rates used in the analyte-
+    detection analysis.
+
+
+Row and column correspondence:
+------------------------------
+
+Within each data split:
+
+- Row n of the spectra matrix corresponds to row n of the reference-value
+  matrix, mixture-identifier vector, and index vector.
+
+- Column m of each spectra matrix corresponds to row m of wavenumbers.csv.
+
+- The index vectors link each selected acquisition to its row in the complete
+  processed Raman dataset.
+
+- The mixture identifiers link to the formulation information in
+  data/Raman/raw_data/refvalues.txt and refvalues.xlsx.
+
+
+Reproducing the analysis:
+-------------------------
+
+Set the MATLAB current folder to the project root and run the scripts in the
+following order:
+
+    run('code/Raman/select_data_for_analysis.m')
+    run('code/Raman/PLSmodel.m')
+    run('code/Raman/GPmodel.m')
+    run('code/Raman/bias_correction_analysis.m')
+    run('code/Raman/analyte_detection_analysis.m')
+
+The first script generates data_split.mat and the associated CSV files. The
+remaining scripts generate the model and analysis-result MATLAB files.
+
+
+Loading the data:
+-----------------
+
+The complete split dataset can be loaded in MATLAB using:
+
+    load(fullfile('data', 'Raman', 'analysis_data', 'data_split.mat'))
+
+An individual result file can be loaded using, for example:
+
+    load(fullfile('data', 'Raman', 'analysis_data', 'pls_model.mat'))
+
+
+Related files:
+--------------
+
+data/Raman/raw_data/README.txt
+    Describes the raw spectra, acquisition metadata, and formulation
+    information.
+
+data/Raman/processed_data/README.txt
+    Describes the complete processed Raman dataset and preprocessing workflow.
+
+code/Raman/select_data_for_analysis.m
+    Defines and generates the calibration, validation, and test splits.
+
+code/Raman/PLSmodel.m
+    Fits the partial least-squares regression model.
+
+code/Raman/GPmodel.m
+    Fits the prediction-bias and variance models.
+
+code/Raman/bias_correction_analysis.m
+    Evaluates the effect of prediction-bias correction.
+
+code/Raman/analyte_detection_analysis.m
+    Evaluates the decision limits and analyte-detection errors.
+
+
+Licence:
+--------
+
+Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+See LICENSE.txt in the repository root.
+
+
+Contact:
+--------
+
+For questions concerning the analysis dataset or its structure, contact:
+
+Carl Emil Aae Eskildsen

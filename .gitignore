@@ -1,0 +1,32 @@
+# Private working and submission material
+/review process/
+/co-author submission approval/
+/lab notebook experiments/
+/Nature_Communications_final_submission_tracker.md
+
+# Manuscript and Supplementary Information files placed in the project root
+/*.doc
+/*.docx
+/*.pdf
+/*.rtf
+
+# Microsoft Office and temporary files
+~$*
+~WRL*.tmp
+*.tmp
+
+# MATLAB editor and autosave files
+*.asv
+*.m~
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# The third-party AqSolDB download and its locally generated MATLAB copy
+/data/AqSolDB/raw_data/*
+!/data/AqSolDB/raw_data/README.txt
+
+# Complete AqSolDB predictor and response values divided among the data sets
+/data/AqSolDB/analysis_data/AqSolDB_data_split.mat
