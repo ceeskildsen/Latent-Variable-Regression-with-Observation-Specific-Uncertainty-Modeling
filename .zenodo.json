@@ -1,5 +1,5 @@
 {
-  "title": "Observation-Specific Uncertainty Modeling for Latent-Variable Regression in High-Dimensional Analytical Data",
+  "title": "Supporting software for Observation-Specific Uncertainty Modeling for Latent-Variable Regression in High-Dimensional Analytical Data",
   "upload_type": "software",
   "description": "Code, data, analysis outputs, figures, and tables supporting the manuscript \"Observation-Specific Uncertainty Modeling for Latent-Variable Regression in High-Dimensional Analytical Data\". The third-party AqSolDB source dataset is not redistributed and must be downloaded separately as described in the README.",
   "creators": [
